@@ -1,0 +1,33 @@
+﻿@model List<CodeZone.DAL.Store>
+
+<h2>Our Stores</h2>
+
+<p>
+    <a asp-action="Create">Add New Store</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Store Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var store in Model)
+        {
+            <tr>
+                <td>@store.Name</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@store.Id">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@store.Id">Edit</a> |
+                    <a href="#" onclick="confirmDelete('@store.Id', '@store.Name')" class="js-delete" data-store-id="@store.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script src="~/js/store-delete.js" asp-append-version="true"></script>
+}
