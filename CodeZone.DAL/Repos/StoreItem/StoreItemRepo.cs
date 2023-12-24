@@ -53,6 +53,17 @@ namespace CodeZone.DAL
                 .Where(si => si.ItemId == itemId)
                 .ToList();
         }
+        public void UpdateQuantity(int itemId, int storeId, int change)
+        {
+            var storeItem = _context.StoresItems
+                .FirstOrDefault(si => si.StoreId == storeId && si.ItemId == itemId);
+
+            if (storeItem != null)
+            {
+                storeItem.Quantity += change;
+                _context.SaveChanges();
+            }
+        }
 
     }
 }

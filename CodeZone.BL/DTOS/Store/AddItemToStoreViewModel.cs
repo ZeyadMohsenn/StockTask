@@ -18,6 +18,7 @@ namespace CodeZone.BL
 
         public int StoreId { get; set; }
 
-        public List<Item> AvailableItems { get; set; }
+
+        public List<Item>? AvailableItems { get; set; }
     }
 }

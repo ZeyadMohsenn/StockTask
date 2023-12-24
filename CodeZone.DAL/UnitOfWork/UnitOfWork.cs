@@ -13,13 +13,16 @@ namespace CodeZone.DAL
         public IStoreRepo Store { get; }
         public IItemRepo Item { get; }
         public IStoreItemRepo StoreItem { get; }
+        public IStoreActivityLogRepo StoreActivityLogRepo { get; }
 
-        public UnitOfWork(StockContext context, IStoreRepo storeRepo, IItemRepo itemRepo, IStoreItemRepo storeItemRepo)
+        public UnitOfWork(StockContext context, IStoreRepo storeRepo, IItemRepo itemRepo, IStoreItemRepo storeItemRepo,IStoreActivityLogRepo storeActivityLogRepo)
         {
             _context = context;
             Store = storeRepo;
             Item = itemRepo;
             StoreItem = storeItemRepo;
+            StoreActivityLogRepo = storeActivityLogRepo;
+
         }
         public int SaveChanges()
         {

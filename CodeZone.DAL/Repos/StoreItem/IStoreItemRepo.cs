@@ -12,6 +12,8 @@ namespace CodeZone.DAL
         List<Item> GetAllAvailableItems();
         void AddItemToStore(StoreItem storeItem);
         List<StoreItem> GetStoreItemsByItemId(int itemId);
+        void UpdateQuantity(int itemId, int storeId, int change);
+
 
 
     }

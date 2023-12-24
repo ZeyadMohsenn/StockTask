@@ -117,13 +117,33 @@ namespace CodeZone.Controllers
             if (ModelState.IsValid)
             {
                 _storeItemManager.AddItemToStore(storeItem);
-                return RedirectToAction("ItemsInStore", new { id = storeItem.StoreId });
+                return RedirectToAction("ItemsInStore", new { storeId = storeItem.StoreId });
             }
 
             storeItem.AvailableItems = _storeItemManager.GetAllAvailableItems();
             return View(storeItem);
         }
+        public IActionResult HistoryLog(int storeId)
+        {
+            var storeActivityLog = _storeItemManager.GetStoreActivityLog(storeId);
+            ViewBag.StoreId = storeId;
 
+            return View(storeActivityLog);
+        }
+
+
+        [HttpPost]
+        public IActionResult DeleteLog(int logId, int storeId)
+        {
+            var log = _storeItemManager.GetStoreActivityLogById(logId);
+
+            if (log != null)
+            {
+                _storeItemManager.DeleteLog(log);
+            }
+
+            return RedirectToAction("HistoryLog", new { storeId });
+        }
 
     }
 }

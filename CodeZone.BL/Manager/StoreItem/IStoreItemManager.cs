@@ -12,6 +12,13 @@ namespace CodeZone.BL
         List<Item> GetAllItemsInStore(int storeId);
         void AddItemToStore(AddItemToStoreViewModel storeItem);
         List<Item> GetAllAvailableItems();
+        List<StoreActivityLog> GetStoreActivityLog(int storeId);
+        void UpdateItemQuantity(int itemId, int storeId, int change);
+        void DeleteLog(StoreActivityLog log);
+        StoreActivityLog GetStoreActivityLogById(int logId);
+
+
+
 
     }
 }

@@ -15,6 +15,7 @@ builder.Services.AddDbContext<StockContext>(options =>
 builder.Services.AddScoped<IStoreRepo, StoreRepo>();
 builder.Services.AddScoped<IItemRepo, ItemRepo>();
 builder.Services.AddScoped<IStoreItemRepo, StoreItemRepo>();
+builder.Services.AddScoped<IStoreActivityLogRepo, StoreActivityLogRepo>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
@@ -23,6 +24,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IStoreManager, StoreManager>();
 builder.Services.AddScoped<IItemManager, ItemManager>();
 builder.Services.AddScoped<IStoreItemManager, StoreItemManager>();
+builder.Services.AddScoped<IStoreActivityLogRepo, StoreActivityLogRepo>();
 
 #endregion
 

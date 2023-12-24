@@ -4,6 +4,7 @@ using CodeZone.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodeZone.DAL.Migrations
 {
     [DbContext(typeof(StockContext))]
-    partial class StockContextModelSnapshot : ModelSnapshot
+    [Migration("20231224142229_log-2")]
+    partial class log2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +45,7 @@ namespace CodeZone.DAL.Migrations
                         .IsUnique()
                         .HasFilter("[StoreId] IS NOT NULL");
 
-                    b.ToTable("Admins", (string)null);
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("CodeZone.DAL.Item", b =>
@@ -73,7 +76,7 @@ namespace CodeZone.DAL.Migrations
 
                     b.HasIndex("ItemId");
 
-                    b.ToTable("Items", (string)null);
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("CodeZone.DAL.Store", b =>
@@ -105,7 +108,7 @@ namespace CodeZone.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Stores", (string)null);
+                    b.ToTable("Stores");
                 });
 
             modelBuilder.Entity("CodeZone.DAL.StoreActivityLog", b =>
@@ -132,9 +135,7 @@ namespace CodeZone.DAL.Migrations
 
                     b.HasIndex("ItemId");
 
-                    b.HasIndex("StoreId");
-
-                    b.ToTable("StoreActivityLogs", (string)null);
+                    b.ToTable("StoreActivityLogs");
                 });
 
             modelBuilder.Entity("CodeZone.DAL.StoreItem", b =>
@@ -160,7 +161,7 @@ namespace CodeZone.DAL.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("StoresItems", (string)null);
+                    b.ToTable("StoresItems");
                 });
 
             modelBuilder.Entity("CodeZone.DAL.Admin", b =>
@@ -187,15 +188,7 @@ namespace CodeZone.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CodeZone.DAL.Store", "Store")
-                        .WithMany()
-                        .HasForeignKey("StoreId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Item");
-
-                    b.Navigation("Store");
                 });
 
             modelBuilder.Entity("CodeZone.DAL.StoreItem", b =>

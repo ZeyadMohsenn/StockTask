@@ -11,6 +11,8 @@ namespace CodeZone.DAL
         public IStoreRepo Store { get; }
         public IItemRepo Item { get; }
         public IStoreItemRepo StoreItem { get; }
+        public IStoreActivityLogRepo StoreActivityLogRepo { get; }
+
         int SaveChanges();
 
     }

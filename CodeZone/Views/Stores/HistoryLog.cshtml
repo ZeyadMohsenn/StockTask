@@ -1,0 +1,78 @@
+﻿@model List<CodeZone.DAL.StoreActivityLog>
+
+<h2>History Log for Store</h2>
+
+<p>
+    <a asp-action="AddItemToStore" asp-route-storeId="@ViewBag.StoreId" class="btn btn-outline-primary">Add Item</a> |
+    <a asp-action="ItemsInStore" asp-route-storeId="@ViewBag.StoreId" class="btn btn-outline-success">Back to The Store</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Added At</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var log in Model)
+        {
+            <tr>
+                <td>@log.Item.ItemName</td>
+                <td>@log.Quantity</td>
+                <td>@log.Timestamp</td>
+                <td>
+                    <button class="btn btn-danger" onclick="deleteLog(@log.Id, @ViewBag.StoreId, this)">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function deleteLog(logId, storeId, button) {
+        const swal = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-danger mx-2",
+                cancelButton: "btn btn-success"
+            },
+            buttonsStyling: false
+        });
+
+        swal.fire({
+            title: "Are you sure that you want to delete this log?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Stores/DeleteLog',
+                    data: { logId: logId, storeId: storeId },
+                    success: function () {
+                        swal.fire({
+                            title: "Deleted!",
+                            text: "Log has been deleted.",
+                            icon: "success"
+                        });
+                        $(button).closest('tr').fadeOut();
+                    },
+                    error: function (error) {
+                        console.error(error);
+                        swal.fire({
+                            title: "Oops!",
+                            text: "Something went wrong.",
+                            icon: "error"
+                        });
+                    }
+                });
+            }
+        });
+    }
+</script>

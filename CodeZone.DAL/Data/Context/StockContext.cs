@@ -13,6 +13,7 @@ namespace CodeZone.DAL
         public DbSet<Store> Stores { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<StoreItem> StoresItems { get; set; }
+        public DbSet<StoreActivityLog> StoreActivityLogs { get; set; }
         public StockContext(DbContextOptions<StockContext> options) : base(options) { }
 
 
