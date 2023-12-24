@@ -45,6 +45,8 @@ namespace CodeZone.Controllers
             {
                 return NotFound();
             }
+            item.Quantity = _itemManager.CalculateTotalQuantity(item.Id);
+
 
             return View(item);
         }
@@ -62,30 +64,35 @@ namespace CodeZone.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, UpdateItemDto itemDto)
+        public IActionResult Edit(int id, Item item)
         {
+            if (id != item.Id)
+            {
+                return NotFound();
+            }
+
             if (ModelState.IsValid)
             {
-                _itemManager.UpdateItem(itemDto, id);
+                _itemManager.UpdateItem(item, id);
                 return RedirectToAction("Index");
             }
 
-            return View(itemDto);
+            return View(item);
         }
 
         [HttpPost]
         public IActionResult Delete(int id)
         {
             Item item = _itemManager.GetItem(id);
-            var isDeleted = _itemManager.DeleteItem(item);
+            bool isDeleted = _itemManager.DeleteItem(item);
 
             if (isDeleted)
             {
-                return Ok(new { message = "Store deleted successfully" });
+                return Ok(new { message = "Item deleted successfully" });
             }
             else
             {
-                return BadRequest(new { message = "Failed to delete store" });
+                return BadRequest(new { message = "Failed to delete Item" });
             }
         }
     }

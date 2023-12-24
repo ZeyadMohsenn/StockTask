@@ -1,0 +1,38 @@
+﻿@functions {
+    int GetTotalQuantity(CodeZone.DAL.Item item, int storeId)
+    {
+        var storeItem = item.StoreItems.FirstOrDefault(si => si.StoreId == storeId);
+        // Console.WriteLine($"Item: {item.ItemName}, StoreId: {storeId}, Quantity: {storeItem?.Quantity}");
+        return storeItem?.Quantity ?? 0;
+    }
+}
+
+
+@model List<CodeZone.DAL.Item>
+
+<h2>Items in Store</h2>
+
+<p>
+    <a asp-action="AddItemToStore" asp-route-storeId="@ViewBag.StoreId" class="btn btn-outline-primary">Add New Item</a>
+    <a asp-action="Index" class="btn btn-outline-success">Back to Stores</a> |
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ItemName</td>
+                <td>@GetTotalQuantity(item, ViewBag.StoreId)</td>
+                <td>@item.price</td>
+            </tr>
+        }
+    </tbody>
+</table>

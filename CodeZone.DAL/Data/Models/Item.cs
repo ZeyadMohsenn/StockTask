@@ -20,7 +20,7 @@ namespace CodeZone.DAL
         public float price { get; set; } = 0;
         public DateTime ExpiryDate { get; set; }
         public ICollection<StoreItem> StoreItems { get; set; } = new List<StoreItem>();
-
+        public ICollection<Item> AvailableItems { get; set; } = new List<Item>();
 
 
     }

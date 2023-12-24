@@ -9,7 +9,6 @@ namespace CodeZone.BL
     public class UpdateItemDto
     {
         public string Name { get; set; }
-        public int Quantity { get; set; }
         public float price { get; set; }
     }
 }

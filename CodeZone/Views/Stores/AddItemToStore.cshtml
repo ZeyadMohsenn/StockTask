@@ -1,0 +1,25 @@
+﻿@model CodeZone.BL.AddItemToStoreViewModel
+
+<h2>Add Item to Store</h2>
+
+<form asp-action="AddItemToStore" asp-controller="Stores" method="post">
+    <div class="form-group">
+        <label asp-for="ItemId">Select Item:</label>
+        <select asp-for="ItemId" asp-items="new SelectList(Model.AvailableItems, nameof(CodeZone.DAL.Item.Id), nameof(CodeZone.DAL.Item.ItemName))" class="form-control">
+            <option value="">Select an Item</option>
+        </select>
+        <span asp-validation-for="ItemId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Quantity">Quantity:</label>
+        <input asp-for="Quantity" class="form-control" />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+
+    <input asp-for="StoreId" type="hidden" />
+
+    <button type="submit" class="btn btn-primary">Add Item</button>
+</form>
+
+<a asp-action="Details" asp-route-id="@Model.StoreId" class="btn btn-outline-secondary">Back to Store Details</a>

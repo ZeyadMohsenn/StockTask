@@ -21,7 +21,6 @@ namespace CodeZone.BL
             {
                 ItemName = item.Name,
                 price = item.price,
-                Quantity = item.Quantity
 
             };
             _unitOfWork.Item.Add(dbItem);
@@ -53,14 +52,13 @@ namespace CodeZone.BL
             }
         }
 
-        public Item UpdateItem(UpdateItemDto item, int id)
+        public Item UpdateItem(Item item, int id)
         {
             Item? dbItem = _unitOfWork.Item.GetById(id);
             if (dbItem != null)
             {
                 dbItem.price = item.price;
-                dbItem.Quantity = item.Quantity;
-                dbItem.ItemName = item.Name;
+                dbItem.ItemName = item.ItemName;
 
 
                 _unitOfWork.Item.Update(dbItem);
@@ -69,5 +67,13 @@ namespace CodeZone.BL
             return dbItem;
 
         }
+        public int CalculateTotalQuantity(int itemId)
+        {
+            var storeItems = _unitOfWork.StoreItem.GetStoreItemsByItemId(itemId)
+                .ToList();
+
+            return storeItems.Sum(si => si.Quantity);
+        }
+
     }
 }

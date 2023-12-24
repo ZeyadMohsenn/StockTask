@@ -22,6 +22,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 #region Manager
 builder.Services.AddScoped<IStoreManager, StoreManager>();
 builder.Services.AddScoped<IItemManager, ItemManager>();
+builder.Services.AddScoped<IStoreItemManager, StoreItemManager>();
 
 #endregion
 

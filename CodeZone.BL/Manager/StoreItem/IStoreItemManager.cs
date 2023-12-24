@@ -1,18 +1,17 @@
-﻿using System;
+﻿using CodeZone.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeZone.DAL
+namespace CodeZone.BL
 {
-    public interface IStoreItemRepo 
+    public interface IStoreItemManager
     {
         List<Item> GetAllItemsInStore(int storeId);
+        void AddItemToStore(AddItemToStoreViewModel storeItem);
         List<Item> GetAllAvailableItems();
-        void AddItemToStore(StoreItem storeItem);
-        List<StoreItem> GetStoreItemsByItemId(int itemId);
-
 
     }
 }

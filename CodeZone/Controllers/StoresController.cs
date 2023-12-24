@@ -7,9 +7,11 @@ namespace CodeZone.Controllers
     public class StoresController : Controller
     {
         private readonly IStoreManager _storeManager;
-        public StoresController(IStoreManager storeManager)
+        private readonly IStoreItemManager _storeItemManager;
+        public StoresController(IStoreManager storeManager, IStoreItemManager itemManager)
         {
             _storeManager = storeManager;
+            _storeItemManager = itemManager;
         }
         public IActionResult Index()
         {
@@ -90,31 +92,37 @@ namespace CodeZone.Controllers
                 return BadRequest(new { message = "Failed to delete store" });
             }
         }
+        public IActionResult ItemsInStore(int storeId)
+        {
+            List<Item> itemsInStore = _storeItemManager.GetAllItemsInStore(storeId);
+            ViewBag.StoreId = storeId;
 
-        //    public IActionResult Delete(int id)
-        //    {
-        //        Store store = _storeManager.GetStore(id);
-        //        if (store == null)
-        //        {
-        //            return NotFound();
-        //        }
+            return View(itemsInStore);
+        }
+        [HttpGet]
+        public IActionResult AddItemToStore(int storeId)
+        {
+            var viewModel = new AddItemToStoreViewModel
+            {
+                StoreId = storeId,
+                AvailableItems = _storeItemManager.GetAllAvailableItems()
+            };
 
-        //        return View(store);
-        //    }
+            return View(viewModel);
+        }
 
-        //    [HttpPost, ActionName("Delete")]
-        //    [ValidateAntiForgeryToken]
-        //    public IActionResult DeleteConfirmed(int id)
-        //    {
-        //        Store store = _storeManager.GetStore(id);
-        //        if (store != null)
-        //        {
-        //            _storeManager.DeleteStore(store);
-        //        }
+        [HttpPost]
+        public IActionResult AddItemToStore(AddItemToStoreViewModel storeItem)
+        {
+            if (ModelState.IsValid)
+            {
+                _storeItemManager.AddItemToStore(storeItem);
+                return RedirectToAction("ItemsInStore", new { id = storeItem.StoreId });
+            }
 
-        //        return RedirectToAction("Index");
-        //    }
-        //}
+            storeItem.AvailableItems = _storeItemManager.GetAllAvailableItems();
+            return View(storeItem);
+        }
 
 
     }

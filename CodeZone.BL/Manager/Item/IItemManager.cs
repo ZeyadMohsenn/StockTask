@@ -9,6 +9,8 @@ namespace CodeZone.BL
         Item GetItem(int id);
         List<Item> GetItems();
         bool DeleteItem(Item item);
-        Item UpdateItem(UpdateItemDto item, int id);
+        Item UpdateItem(Item item, int id);
+        int CalculateTotalQuantity(int itemId);
+
     }
 }

@@ -12,20 +12,22 @@
             <th>Item Name</th>
             <th>Actions</th>
         </tr>
-    </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
+            @foreach (var item in Model)
+            {
             <tr>
-                <td>@item.ItemName</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">@item.ItemName</a>
+                </td>
                 <td>
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a href="#" onclick="confirmDelete('@item.Id', '@item.ItemName')">Delete</a>
+                    <a href="#" onclick="confirmDelete('@item.Id', '@item.ItemName')" class="js-delete" data-item-id="@item.Id">Delete</a>
                 </td>
             </tr>
-        }
+            }
     </tbody>
+
 </table>
 
 @section Scripts{
