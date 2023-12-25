@@ -14,16 +14,16 @@
 
 <p>
     <a asp-action="AddItemToStore" asp-route-storeId="@ViewBag.StoreId" class="btn btn-outline-primary">Add Item</a> |
-    <a asp-action="HistoryLog" asp-route-storeId="@ViewBag.StoreId" class="btn btn-outline-info">View History Log</a> |      
+    <a asp-action="HistoryLog" asp-route-storeId="@ViewBag.StoreId" class="btn btn-outline-info">View History Log</a> |
     <a asp-action="Index" class="btn btn-outline-success">Back to Stores</a>
 </p>
 
-<table class="table">
-    <thead>
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
         <tr>
-            <th>Item Name</th>
-            <th>Quantity</th>
-            <th>Price</th>
+            <th class="text-dark mb-4">Item Name</th>
+            <th class="text-dark mb-4">Quantity</th>
+            <th class="text-dark mb-4">Price</th>
         </tr>
     </thead>
     <tbody>

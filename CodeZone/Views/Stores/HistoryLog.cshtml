@@ -3,17 +3,19 @@
 <h2>History Log for Store</h2>
 
 <p>
-    <a asp-action="AddItemToStore" asp-route-storeId="@ViewBag.StoreId" class="btn btn-outline-primary">Add Item</a> |
+    <a asp-action="AddItemToStore" asp-route-storeId="@ViewBag.StoreId" class="btn btn-outline-primary">
+        <i class="bi bi-plus-circle"></i> Add Item
+    </a> |
     <a asp-action="ItemsInStore" asp-route-storeId="@ViewBag.StoreId" class="btn btn-outline-success">Back to The Store</a>
 </p>
 
-<table class="table">
-    <thead>
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
         <tr>
-            <th>Item Name</th>
-            <th>Quantity</th>
-            <th>Added At</th>
-            <th>Action</th>
+            <th class="text-dark mb-4">Item Name</th>
+            <th class="text-dark mb-4">Quantity</th>
+            <th class="text-dark mb-4">Added At</th>
+            <th class="text-dark mb-4">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -24,7 +26,10 @@
                 <td>@log.Quantity</td>
                 <td>@log.Timestamp</td>
                 <td>
-                    <button class="btn btn-danger" onclick="deleteLog(@log.Id, @ViewBag.StoreId, this)">Delete</button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteLog(@log.Id, @ViewBag.StoreId, this)">
+                        <i class="bi bi-trash3-fill"></i> DELETE
+
+                    </button>
                 </td>
             </tr>
         }

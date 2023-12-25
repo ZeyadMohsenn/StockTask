@@ -80,7 +80,7 @@ namespace CodeZone.Controllers
             return View(item);
         }
 
-        [HttpPost]
+        [HttpDelete]
         public IActionResult Delete(int id)
         {
             Item item = _itemManager.GetItem(id);

@@ -4,10 +4,25 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to StockTask</h1>
-    <p>Explore our features and manage your inventory with ease.</p>
+    <p class="lead">
+        Explore and track our stores, branches, and effortlessly manage your inventory items with StockTask.
+    </p>
 
-    <div class="mt-4">
-        <a href="@Url.Action("Index", "Stores")" class="btn btn-primary btn-lg mr-3">Manage Stores</a>
-        <a href="@Url.Action("Index", "Items")" class="btn btn-success btn-lg">View Items</a>
+    <div class="card-deck mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Manage Stores</h5>
+                <p class="card-text">Effortlessly oversee and track your stores and branches with StockTask.</p>
+                <a href="@Url.Action("Index", "Stores")" class="btn btn-outline-primary">Go to Stores</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">View Items</h5>
+                <p class="card-text">Explore your inventory items and gain insights with StockTask.</p>
+                <a href="@Url.Action("Index", "Items")" class="btn btn-outline-success">View Items</a>
+            </div>
+        </div>
     </div>
 </div>

@@ -58,6 +58,7 @@ namespace CodeZone.BL
             {
                 dbStore.Name = store.Name;
                 dbStore.ManagerName = store.ManagerName;
+                dbStore.Location = store.Location;
                 dbStore.ClosingTime = store.ClosingTime;
                 dbStore.OpeningTime =store.OpeningTime;
                 dbStore.PhoneNumber = store.PhoneNumber;
